@@ -1,0 +1,15 @@
+django==4.1.5
+channels==3.0.5
+channels-redis==3.4.1
+psycopg2-binary==2.9.5
+django-decouple==2.1
+Pillow==9.4.0
+django-cleanup==6.0.0
+# requests
+# django-filter
+# pyotp
+# daphne
+# django-debug-toolbar
+# django-crontab
+# jdatetime
+# gunicorn 

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+    postgres:
+        image: postgres:14.5-alpine
+        ports:
+          - 5432:5432
+        environment:
+            POSTGRES_PORT: 5432
+            POSTGRES_DB: "truth_social"
+            POSTGRES_USER: "truth_social"
+            POSTGRES_PASSWORD: "truth_social"
+        volumes:
+            - postgres-data:/var/lib/postgresql/data/
+
+    redis:
+        image: redis:6.2.7-alpine
+        ports:
+            - 6379:6379 
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        volumes:
+            - redis-data:/data
+
+
+volumes:
+    postgres-data:
+    redis-data:
