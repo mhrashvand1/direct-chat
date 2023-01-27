@@ -8,9 +8,9 @@ services:
           - 5432:5432
         environment:
             POSTGRES_PORT: 5432
-            POSTGRES_DB: "truth_social"
-            POSTGRES_USER: "truth_social"
-            POSTGRES_PASSWORD: "truth_social"
+            POSTGRES_DB: "direct-chat"
+            POSTGRES_USER: "direct-chat"
+            POSTGRES_PASSWORD: "direct-chat"
         volumes:
             - postgres-data:/var/lib/postgresql/data/
 

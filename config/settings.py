@@ -85,8 +85,8 @@ DATABASES = {
     "default": {
         "ENGINE": config("DB_ENGINE", default="django.db.backends.sqlite3"),
         "NAME": config("DB_NAME", default="db.sqlite3"),
-        "USER": config("DB_USER", default="foo"),
-        "PASSWORD": config("DB_PASSWORD", default="foo"),
+        "USER": config("DB_USER", default="direct-chat"),
+        "PASSWORD": config("DB_PASSWORD", default="direct-chat"),
         "HOST": config("DB_HOST", default="localhost"),
         "PORT": config("DB_PORT", default=5432),
     }
