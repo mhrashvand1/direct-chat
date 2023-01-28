@@ -43,6 +43,8 @@ THIRD_PARTY_PACKAGES = [
 ]
 
 PROJECT_APPS = [
+    'account.apps.AccountConfig',
+    'core.apps.CoreConfig',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_PACKAGES + PROJECT_APPS
@@ -93,7 +95,6 @@ DATABASES = {
 }
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -139,3 +140,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# User Model
+AUTH_USER_MODEL = 'account.User'
