@@ -8,7 +8,7 @@ from django.utils import timezone
 from account.models import Profile
 from django.db.models import Q, F, Max
 from common.utils import get_reverse_dict
-
+import os
 
 User = get_user_model()
 
@@ -28,7 +28,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.username = self.user.username
             self.name = self.user.name
             self.profile = await sync_to_async(self.get_user_profile)(self.user)
-            self.avatar_url = await self.get_abolute_uri(self.profile.avatar.url)
+            self.avatar_url = await self.get_absolute_uri(self.profile.avatar.url)
             self.current_chat = dict()
             await self.channel_layer.group_add(self.username, self.channel_name) 
             user_data = {
@@ -380,14 +380,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         result = dict()
         result['name'], result['username'] = user.name, user.username    
         profile = await sync_to_async(self.get_user_profile)(user)
-        result['avatar'] = await self.get_abolute_uri(url=profile.avatar.url)
+        result['avatar'] = await self.get_absolute_uri(url=profile.avatar.url)
         return result
     
     
-    async def get_abolute_uri(self, url):
-        scope = self.scope
-        server = f"{scope['server'][0]}:{scope['server'][1]}"
-        result = f"http://{server}{url}" 
+    async def get_absolute_uri(self, url):
+        # scope = self.scope
+        # server = f"{scope['server'][0]}:{scope['server'][1]}"
+        result = os.path.join("http://127.0.0.1:8000/", url)
         return result
             
     async def send_contacts(self):
@@ -409,7 +409,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             result['username'] = str(another_user.username)
             result['name'] = str(another_user.name)
             another_user_profile = await sync_to_async(self.get_user_profile)(user=another_user)
-            result['avatar'] = await self.get_abolute_uri(another_user_profile.avatar.url)
+            result['avatar'] = await self.get_absolute_uri(another_user_profile.avatar.url)
             final_result.append(result)
             
         context = {"type":"load_contacts", "results":final_result}
@@ -424,7 +424,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             "actor":self.username,
             "username":destination_user.username,
             "name":destination_user.name,
-            "avatar":await self.get_abolute_uri(destination_user_profile.avatar.url),
+            "avatar":await self.get_absolute_uri(destination_user_profile.avatar.url),
             "room_id":room_id,
             "last_message_time":datetime,
             "new_msg_count":1

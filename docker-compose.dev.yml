@@ -1,6 +1,23 @@
 version: "3.8"
 
 services:
+    direct_chat:
+        image: direct_chat:1.0.0
+        container_name: direct_chat
+        build: ./direct_chat
+        restart: "always"
+        expose:
+          - "8000"
+        volumes:
+          - ./direct_chat/:/usr/src/direct_chat/
+          - ./static/:/usr/src/static/
+          - ./media/:/usr/src/media/
+        env_file:
+          - ./env.dev
+        depends_on:
+          - "postgres"
+          - "redis"
+          - "nginx"
 
     postgres:
         image: postgres:14.5-alpine
@@ -23,6 +40,15 @@ services:
         volumes:
             - redis-data:/data
 
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        restart: always
+        ports:
+            - 80:80
+        volumes:
+            - ./static/:/static/
+            - ./media/:/media/
 
 volumes:
     postgres-data:

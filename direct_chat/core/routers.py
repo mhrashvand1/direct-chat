@@ -3,6 +3,6 @@ from django.urls import path
 
 websocket_urlpatterns = [
     path(
-        'chat/', consumers.ChatConsumer.as_asgi(), name='chat'
+        'ws/chat/', consumers.ChatConsumer.as_asgi(), name='chat'
     ),   
 ]

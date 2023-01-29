@@ -7,7 +7,7 @@ let contact_ul = $('#contacts');
 
 
 let socket = new WebSocket(
-'ws://' + window.location.host + '/chat/'
+'ws://' + window.location.host + '/ws/chat/'
 );
 
 socket.onmessage = function(e) {
@@ -64,6 +64,7 @@ socket.onmessage = function(e) {
 };
 
 socket.onclose = function(e) {
+    console.log(e.message)
     console.error('Socket closed unexpectedly');
 };
 

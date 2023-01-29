@@ -17,7 +17,7 @@ DEBUG = config("DEBUG", default=False)
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     cast=lambda value: [h.strip() for h in value],
-    default=["127.0.0.1", "localhost", "app", "directchat"]
+    default=["127.0.0.1", "localhost", "app", "direct_chat"]
 )
 
 INTERNAL_IPS = config(
@@ -128,11 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR.parent / 'static'
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR.parent / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
