@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Direct Chat Mini Project</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="{% static 'core/css/chat.css' %}">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <!--###-->
+        <div class="edit-profile-div">
+            <a href="{% url 'account:profile' %}" target="_blank">Edit Profile</a>&nbsp
+            <a href="{% url 'account:logout' %}">logout</a>
+        </div>
+        <!--###-->
+        <div id="container">
+			{% block aside %}{% endblock aside %}
+            {% block main %}{% endblock main %}
+
+		</div>
+		{% block scripts %}{% endblock scripts%}
+    </body>
+
+</hmtl>

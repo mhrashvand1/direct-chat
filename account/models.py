@@ -35,8 +35,11 @@ class User(AbstractBaseUser, PermissionsMixin, UUIDBaseModel):
         db_index=True,
     )  
     name = models.CharField(_("name"), max_length=150)
-    email = models.EmailField(_("email address"), blank=True)
+    blockings = models.ManyToManyField(
+        to='User', related_name='blockers', through='activity.Block'
+    )   
     
+    email = models.EmailField(_("email address"), blank=True)  
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
@@ -96,23 +99,3 @@ class Profile(BaseModel):
     )
     
     
-         
-class OnlineStatus(models.Model): 
-    
-    status_choices = [
-        (0, 'online'),
-        (1, 'offline')
-    ]
-      
-    user = models.OneToOneField(
-        to=User, primary_key=True, db_index=True, 
-        on_delete=models.CASCADE, related_name='online_status', 
-        verbose_name=_('user')
-    ) 
-    status = models.IntegerField(choices=status_choices, default=1)
-
-    class Meta:
-        db_table = 'OnlineStatus'
-        verbose_name = _('online status')
-        verbose_name_plural = _('online status')
-        

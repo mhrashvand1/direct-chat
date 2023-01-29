@@ -67,16 +67,5 @@ class ProfileView(View):
     def post(self, request, *args, **kwargs):
         form = ProfileForm(request.POST, instance=request.user, files=request.FILES)
         if form.is_valid():
-            print("\n data is valid \n {} \n".format(form.cleaned_data))
             form.save()
-        else:
-            print("\n data is not valid \n {} \n".format(form.data))
-            print("\n errors: \n")
-            print(form.non_field_errors())
-            print(form.errors)
-            # print(form.username.errors)
-            # print(form.name.errors)
-            # print(form.avatar.errors)
-            print("\n")
-
         return render(request, 'account/profile.html', {'form': form})

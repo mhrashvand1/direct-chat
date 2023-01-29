@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", default="xxx")
+SECRET_KEY = config("SECRET_KEY", default="xfdgr45gvtj678cerxx")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False)
@@ -38,13 +38,14 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_PACKAGES = [
-    # 'channels',
+    'channels',
     'django_cleanup.apps.CleanupConfig',
 ]
 
 PROJECT_APPS = [
     'account.apps.AccountConfig',
     'core.apps.CoreConfig',
+    'activity.apps.ActivityConfig',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_PACKAGES + PROJECT_APPS
@@ -143,3 +144,20 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User Model
 AUTH_USER_MODEL = 'account.User'
+
+# channels
+ASGI_APPLICATION = 'config.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [
+                (
+                    config("REDIS_HOST", default="127.0.0.1"),
+                    config("REDIS_PORT", default="6379")
+                )
+            ],
+        },
+    },
+}
