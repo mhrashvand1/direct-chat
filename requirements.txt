@@ -4,8 +4,6 @@
 #
 #    pip-compile requirements.in
 #
-aioredis==1.3.1
-    # via channels-redis
 asgiref==3.6.0
     # via
     #   channels
@@ -13,7 +11,7 @@ asgiref==3.6.0
     #   daphne
     #   django
 async-timeout==4.0.2
-    # via aioredis
+    # via redis
 attrs==22.2.0
     # via
     #   automat
@@ -25,11 +23,11 @@ automat==22.10.0
     # via twisted
 cffi==1.15.1
     # via cryptography
-channels==3.0.5
+channels==4.0.0
     # via
     #   -r requirements.in
     #   channels-redis
-channels-redis==3.4.1
+channels-redis==4.0.0
     # via -r requirements.in
 constantly==15.1.0
     # via twisted
@@ -38,8 +36,8 @@ cryptography==39.0.0
     #   autobahn
     #   pyopenssl
     #   service-identity
-daphne==3.0.2
-    # via channels
+daphne==4.0.0
+    # via -r requirements.in
 django==4.1.5
     # via
     #   -r requirements.in
@@ -48,8 +46,6 @@ django-cleanup==6.0.0
     # via -r requirements.in
 django-decouple==2.1
     # via -r requirements.in
-hiredis==2.1.1
-    # via aioredis
 hyperlink==21.0.0
     # via
     #   autobahn
@@ -76,6 +72,8 @@ pycparser==2.21
     # via cffi
 pyopenssl==23.0.0
     # via twisted
+redis==4.4.2
+    # via channels-redis
 service-identity==21.1.0
     # via twisted
 six==1.16.0

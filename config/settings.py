@@ -28,27 +28,24 @@ INTERNAL_IPS = config(
 
 
 # Application definition
-DEFAULT_APPS = [
+INSTALLED_APPS = [
+    # Dephne
+    "daphne",
+    # Default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',   
-]
-
-THIRD_PARTY_PACKAGES = [
+    'django.contrib.staticfiles', 
+    # Third party packages
     'channels',
     'django_cleanup.apps.CleanupConfig',
-]
-
-PROJECT_APPS = [
+    # Project app
     'account.apps.AccountConfig',
     'core.apps.CoreConfig',
     'activity.apps.ActivityConfig',
 ]
-
-INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_PACKAGES + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
