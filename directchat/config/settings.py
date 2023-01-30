@@ -17,13 +17,13 @@ DEBUG = config("DEBUG", default=False)
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     cast=lambda value: [h.strip() for h in value],
-    default=["127.0.0.1", "localhost", "app", "direct_chat"]
+    default=["*"]
 )
 
 INTERNAL_IPS = config(
     "INTERNAL_IPS",
     cast=lambda value: [h.strip() for h in value],
-    default=["127.0.0.1"]
+    default=["*"]
 )
 
 
@@ -85,8 +85,8 @@ DATABASES = {
     "default": {
         "ENGINE": config("DB_ENGINE", default="django.db.backends.sqlite3"),
         "NAME": config("DB_NAME", default="db.sqlite3"),
-        "USER": config("DB_USER", default="direct-chat"),
-        "PASSWORD": config("DB_PASSWORD", default="direct-chat"),
+        "USER": config("DB_USER", default="directchat"),
+        "PASSWORD": config("DB_PASSWORD", default="directchat"),
         "HOST": config("DB_HOST", default="localhost"),
         "PORT": config("DB_PORT", default=5432),
     }

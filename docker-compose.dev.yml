@@ -1,23 +1,34 @@
 version: "3.8"
 
 services:
-    direct_chat:
-        image: direct_chat:1.0.0
-        container_name: direct_chat
-        build: ./direct_chat
-        restart: "always"
+    directchat:
+        image: directchat:1.0.0
+        container_name: directchat
+        build: ./directchat
+        restart: always
         expose:
-          - "8000"
+          - 8000
         volumes:
-          - ./direct_chat/:/usr/src/direct_chat/
+          - ./directchat/:/usr/src/directchat/
           - ./static/:/usr/src/static/
           - ./media/:/usr/src/media/
-        env_file:
-          - ./env.dev
+        environment:
+            - SECRET_KEY=somthing
+            - DEBUG=0
+            - ALLOWED_HOST=directchat 127.0.0.1 0.0.0.0 localhost
+            - INTERNAL_IPS=directchat 127.0.0.1 0.0.0.0 localhost
+            - DB_ENGINE=django.db.backends.postgresql
+            - DB_NAME=directchat
+            - DB_USER=directchat
+            - DB_PASSWORD=directchat
+            - DB_HOST=postgres
+            - DB_PORT=5432
+            - REDIS_HOST=redis
+            - REDIS_PORT=6379
         depends_on:
-          - "postgres"
-          - "redis"
-          - "nginx"
+          - postgres
+          - redis
+          - nginx
 
     postgres:
         image: postgres:14.5-alpine
@@ -25,9 +36,9 @@ services:
           - 5432:5432
         environment:
             POSTGRES_PORT: 5432
-            POSTGRES_DB: "direct-chat"
-            POSTGRES_USER: "direct-chat"
-            POSTGRES_PASSWORD: "direct-chat"
+            POSTGRES_DB: directchat
+            POSTGRES_USER: directchat
+            POSTGRES_PASSWORD: directchat
         volumes:
             - postgres-data:/var/lib/postgresql/data/
 
@@ -53,3 +64,6 @@ services:
 volumes:
     postgres-data:
     redis-data:
+    directchat:
+    static:
+    media:

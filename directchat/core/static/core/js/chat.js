@@ -388,7 +388,7 @@ function searchUsernameKeydownHandler(e){
         contactRemoveSelected();
         if (search_username.value.toLowerCase() === current_user_username){
             mainBotMessage({
-                message:`${search_username.value} is your username baby.`,
+                message:`${search_username.value} is your own username baby.`,
                 code: ''
             });
             search_username.value = '';

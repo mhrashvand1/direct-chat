@@ -2,7 +2,7 @@
 FROM python:3.9.6-alpine
 
 # set work directory
-WORKDIR /usr/src/direct_chat
+WORKDIR /usr/src/directchat
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -20,7 +20,8 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . .
 
-CMD while ! python manage.py sqlflush > /dev/null 2>&1 ; do sleep 1; done && \
+# CMD while ! python manage.py sqlflush > /dev/null 2>&1 ; do sleep 1; done && \
+CMD while ! python manage.py sqlflush; do sleep 1; done && \
     python manage.py makemigrations --noinput && \
     python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput && \ 
