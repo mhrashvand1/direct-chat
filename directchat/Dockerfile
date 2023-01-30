@@ -20,8 +20,7 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . .
 
-# CMD while ! python manage.py sqlflush > /dev/null 2>&1 ; do sleep 1; done && \
-CMD while ! python manage.py sqlflush; do sleep 1; done && \
+CMD while ! python manage.py sqlflush > /dev/null 2>&1 ; do sleep 1; done && \
     python manage.py makemigrations --noinput && \
     python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput && \ 
