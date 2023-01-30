@@ -26,7 +26,7 @@ cd direct-chat
 ```  
 Then: 
 ``` bash  
-docker-compose -f docker-compose.dev.yml up    
+docker-compose -f docker-compose.dev.yml up --build  
 ``` 
 Wait until the program is ready to use.
 (Whenever you see the following log in the terminal, it means that the program is ready to be used:)
