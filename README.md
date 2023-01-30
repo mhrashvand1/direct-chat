@@ -20,7 +20,7 @@ Test direct-chat by opening several incognito windows and logging in with differ
 ## Run  
 Clone and cd to the direct-chat directory: 
 ``` bash
-git clone git@github.com:mhrashvand1/truth_social.git   
+git clone git@github.com:mhrashvand1/direct-chat.git   
 
 cd direct-chat   
 ```  
