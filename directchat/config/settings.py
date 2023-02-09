@@ -14,15 +14,23 @@ SECRET_KEY = config("SECRET_KEY", default="xfdgr45gvtj678cerxx")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False)
 
+def parse_list_cast(value):
+    if type(value) == str:
+        return [i.strip() for i in value.split()]
+    elif type(value) in [list, tuple]:
+        return [i.strip() for i in value]
+    else:
+        return value
+    
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    cast=lambda value: [h.strip() for h in value],
+    cast=parse_list_cast,
     default=["*"]
 )
 
 INTERNAL_IPS = config(
     "INTERNAL_IPS",
-    cast=lambda value: [h.strip() for h in value],
+    cast=parse_list_cast,
     default=["*"]
 )
 

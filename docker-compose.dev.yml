@@ -13,10 +13,10 @@ services:
           - ./static/:/usr/src/static/
           - ./media/:/usr/src/media/
         environment:
-            - SECRET_KEY=somthing
+            - SECRET_KEY="somthing"
             - DEBUG=0
-            - ALLOWED_HOST=directchat 127.0.0.1 0.0.0.0 localhost
-            - INTERNAL_IPS=directchat 127.0.0.1 0.0.0.0 localhost
+            - ALLOWED_HOST="directchat 127.0.0.1 0.0.0.0 localhost"
+            - INTERNAL_IPS="directchat 127.0.0.1 0.0.0.0 localhost"
             - DB_ENGINE=django.db.backends.postgresql
             - DB_NAME=directchat
             - DB_USER=directchat
