@@ -5,7 +5,7 @@ services:
         image: directchat:1.0.0
         container_name: directchat
         build: ./directchat
-        restart: always
+        restart: on-failure
         expose:
           - 8000
         volumes:
@@ -54,7 +54,7 @@ services:
     nginx:
         build: ./nginx
         container_name: nginx
-        restart: always
+        restart: on-failure
         ports:
             - 80:80
         volumes:
