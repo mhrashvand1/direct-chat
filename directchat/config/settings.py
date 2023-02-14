@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": config("DB_ENGINE", default="django.db.backends.sqlite3"),
-        "NAME": config("DB_NAME", default="db.sqlite3"),
+        "ENGINE": config("DB_ENGINE", default="django.db.backends.postgresql"),
+        "NAME": config("DB_NAME", default="directchat"),
         "USER": config("DB_USER", default="directchat"),
         "PASSWORD": config("DB_PASSWORD", default="directchat"),
-        "HOST": config("DB_HOST", default="localhost"),
+        "HOST": config("DB_HOST", default="postgres"),
         "PORT": config("DB_PORT", default=5432),
     }
 }
@@ -159,7 +159,7 @@ CHANNEL_LAYERS = {
         "CONFIG": {
             "hosts": [
                 (
-                    config("REDIS_HOST", default="127.0.0.1"),
+                    config("REDIS_HOST", default="redis"),
                     config("REDIS_PORT", default="6379")
                 )
             ],
