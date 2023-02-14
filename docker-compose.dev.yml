@@ -16,6 +16,8 @@ services:
           - postgres
           - redis
           - nginx
+        # env_file:
+        #     - .env
 
     postgres:
         image: postgres:14.5-alpine
