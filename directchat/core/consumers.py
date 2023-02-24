@@ -462,10 +462,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     
     def get_user_rooms(self, user=None, username=None):
+        room_queryset = Room.objects.prefetch_related('members')
         if user:
-            user_rooms = Room.objects.filter(members=user)
+            user_rooms = room_queryset.filter(members=user)
         elif username:
-            user_rooms = Room.objects.filter(members__username=username) 
+            user_rooms = room_queryset.filter(members__username=username) 
         else:
             return Room.objects.none()
         
