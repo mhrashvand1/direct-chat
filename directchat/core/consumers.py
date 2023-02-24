@@ -463,15 +463,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
     
     def get_user_rooms(self, user=None, username=None):
         if user:
-            user_rooms = Room.objects.filter(members=self.user)
+            user_rooms = Room.objects.filter(members=user)
         elif username:
-            user_rooms = Room.objects.filter(members__username=self.user) 
+            user_rooms = Room.objects.filter(members__username=username) 
         else:
             return Room.objects.none()
+        
         user_rooms = user_rooms.annotate(
-            last_message_time=Max('messages__created_at', default=F("created_at"))
-        ).order_by("-last_message_time")   
+            last_message_time=Max(
+                'messages__created_at',
+                default=F("created_at")
+            )
+        ).order_by("-last_message_time") 
+          
         return user_rooms
+    
      
     def get_pv_common_room(self, username):
         current_user_rooms = self.get_user_rooms(user=self.user)
