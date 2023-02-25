@@ -31,7 +31,8 @@ directchat    | 2023-01-30 15:16:05,154 INFO     Listening on TCP address 0.0.0.
 
 ```  
 
-4. Now you can access the program at the following address:    
+4. Now you can access the program at the following address:  
+(The project will be accessed on `localhost` at port `80`.)    
 
 ``` shell
 http://127.0.0.1/
